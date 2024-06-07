@@ -1,11 +1,7 @@
 package org.example;
 
-/* Step 6: In your main method, check if the person exists. If they do, print the name and favorite day of the week to the console.
-Bonus:
-
-Step 8: Write a method in the PersonRepository that counts the number of persons by gender and outputs the results.
-Step 9: Add a method in the PersonRepository that searches and returns a person by their name. The method should return an Optional.
-Step 10: Write a method in the PersonRepository that searches and returns all persons by their favorite weekday. The method should return a list.
+/*
+Step 6: In your main method, check if the person exists. If they do, print the name and favorite day of the week to the console.
  */
 import java.util.Optional;
 
@@ -15,8 +11,9 @@ import static org.example.DaysOfWeek.TUESDAY;
 public class Main {
     public static void main(String[] args) {
 
-        Person person1 = new Person("1","Hans",MONDAY);
-        Person person2 = new Person("2","Hans",TUESDAY);
+        Person person1 = new Person("1","Hans",MONDAY,Gender.MALE);
+        Person person2 = new Person("2","Hanna",TUESDAY,Gender.FEMALE);
+        Person person3 = new Person("3","Svetlana",TUESDAY,Gender.FEMALE);
 
         System.out.println(person1);
 
@@ -24,6 +21,7 @@ public class Main {
 
         personRepository.addPerson(person1);
         personRepository.addPerson(person2);
+        personRepository.addPerson(person3);
 
         System.out.println(personRepository);
 
@@ -31,8 +29,13 @@ public class Main {
         System.out.println(personRepository.getPersons("1"));
 
         printPerson(personRepository.getPersons("1"));
-        printPerson(personRepository.getPersons("3"));
+        printPerson(personRepository.getPersons("4"));
 
+        System.out.println(personRepository.genderCount());
+
+        printPerson(personRepository.getPersonsByName("Hans"));
+
+        System.out.println(personRepository.getPersonsByWeekdays(TUESDAY));
 
     }
     public static void printPerson(Optional<Person> person) {
